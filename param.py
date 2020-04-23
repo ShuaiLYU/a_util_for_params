@@ -7,7 +7,7 @@
 # @Github  ：https://github.com/Wslsdx
 class Param(object):
 	def __init__(self,**kargs):
-		self._name="param."
+		self._name="param"
 		self.regist_from_dict(kargs)
 
 	def regist_from_parser(self,parser):
@@ -23,7 +23,7 @@ class Param(object):
 		self.__setitem__(key, val)
 
 	def update_name(self,last_name,key):
-		self._name=last_name+key+"."
+		self._name=last_name+"."+key
 		for key,val in self.__dict__.items():
 			if isinstance(val,Param):
 				val.update_name(self._name,key)
@@ -64,16 +64,24 @@ class Param(object):
 			del self.__dict__[key]
 		except KeyError as k:
 			return None
-
+	# def __str__(self):
+	# 	string=""
+	# 	for key,val in self.__dict__.items():
+	# 		if key is "_name": continue
+	# 		if isinstance(val,Param):
+	# 			string += self._name + "{}=Param()\n".format(key)
+	# 			string +="{}".format(val)
+	# 		else:
+	# 			string +=self._name+"{}={}\n".format(key,val)
+	# 	return string
 	def __str__(self):
-		string=""
+		string=self._name + "=Param()\n"
 		for key,val in self.__dict__.items():
 			if key is "_name": continue
 			if isinstance(val,Param):
-				string += self._name + "{}=Param()\n".format(key)
-				string +="{}".format(val)
+				string +=str(val)
 			else:
-				string +=self._name+"{}={}\n".format(key,val)
+				string +=self._name+".{}={}\n".format(key,val)
 		return string
 	def __len__(self):
 		return len(self.__dict__)
