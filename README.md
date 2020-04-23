@@ -2,7 +2,7 @@
 
 **自己写的一个工具类，方便管理和使用深度学习的各种超参数**
 
-## 初始化方法
+##  一些可用的初始化方法
 ```
 	param=Param()
 	param["is_train"]=True
@@ -25,10 +25,11 @@
 ```
 print (param)
 ```
-***打印结果保存后，可以直接作为下次初始化的代码使用***  
+***打印结果保存后，稍作修改就可以直接作为下次初始化的代码使用***  
+param=Param()  
 param.is_train=True  
 param.load_weight=True  
-param.data_name=ImageNet    
+param.data_name=ImageNet  
 param.dataset=Param()  
 param.dataset.image_size=[224, 224]  
 param.dataset.channels=3  
