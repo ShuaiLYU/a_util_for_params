@@ -124,7 +124,6 @@ if __name__=="__main__":
 
 	#打印参数
 	print (param)
-
 	#
 	print(param.get('''123''',123))
 
