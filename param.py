@@ -81,6 +81,7 @@ class Param(object):
 			if isinstance(val,Param):
 				string +=str(val)
 			else:
+				if isinstance(val,str): val='''"{}"'''.format(val)
 				string +=self._name+".{}={}\n".format(key,val)
 		return string
 	def __len__(self):
@@ -94,6 +95,13 @@ class Param(object):
 		return self.__dict__.values()
 	def items(self):
 		return self.__dict__.items()
+
+	def get(self,key,default):
+		if key in self.keys():
+			return self[key]
+		else:
+			return default
+
 if __name__=="__main__":
 
 
@@ -114,5 +122,9 @@ if __name__=="__main__":
 
 	param.train.regist("optim",Param(name="SGD",lr=0.001))
 
+	#打印参数
 	print (param)
+
+	#
+	print(param.get('''123''',123))
 
